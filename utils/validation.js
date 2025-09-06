@@ -36,6 +36,17 @@ const registerSchema = Joi.object({
       'string.pattern.base': 'Password must contain at least one lowercase letter, one uppercase letter, one number, and one special character',
       'any.required': 'Password is required'
     }),
+  username: Joi.string()
+    .alphanum()
+    .min(3)
+    .max(30)
+    .required()
+    .messages({
+      'string.alphanum': 'Username must only contain alphanumeric characters',
+      'string.min': 'Username must be at least 3 characters long',
+      'string.max': 'Username must not exceed 30 characters',
+      'any.required': 'Username is required'
+    }),
   role: Joi.string()
     .valid('user', 'admin')
     .default('user'),
